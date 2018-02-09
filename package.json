@@ -1,0 +1,20 @@
+{
+  "name": "npm-historian",
+  "version": "1.0.0-alpha",
+  "description": "Resolve npm dependency strings at a specific time in the past",
+  "keywords": [
+    "npm",
+    "history",
+    "time-travel",
+    "archive"
+  ],
+  "homepage": "https://github.com/chbrown/npm-historian",
+  "repository": "git://github.com/chbrown/npm-historian.git",
+  "author": "Christopher Brown <io@henrian.com>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.0",
+    "npm-registry-client": "^8.5.0",
+    "semver": "^5.5.0"
+  }
+}
