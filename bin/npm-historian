@@ -4,7 +4,7 @@ const {generateResolutionReports, pinConfig} = require('..')
 
 function main() {
   const argvparser = require('optimist')
-    .usage('Usage: npm-historian [--timestamp YYYY-MM-DD] [package.json|pkgName1 [pkgName2 ...]]')
+    .usage('Usage: npm-historian [--timestamp YYYY-MM-DD] package.json|pkgName1 [pkgName2 ...]')
     .describe({
       timestamp: 'historical time to evaluate at (defaults to now)',
       help: 'print this help message',
