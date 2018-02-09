@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+const fs = require('fs')
+const {generateResolutionReports, pinConfig} = require('..')
+
+function main() {
+  const argvparser = require('optimist')
+    .usage('Usage: npm-historian [--timestamp YYYY-MM-DD] [package.json|pkgName1 [pkgName2 ...]]')
+    .describe({
+      timestamp: 'historical time to evaluate at (defaults to now)',
+      help: 'print this help message',
+      version: 'print version',
+    })
+    .boolean(['help', 'version'])
+    .default({timestamp: new Date().toISOString()})
+
+  const {_: nameSpecs, timestamp, help, version} = argvparser.argv
+  if (help) {
+    argvparser.showHelp()
+  }
+  else if (version) {
+    console.log(require('../package').version)
+  }
+  else {
+    // if a single argument is given and it's a file, assume it's a package.json,
+    // and run pinConfig on its contents
+    if (nameSpecs.length === 1 && fs.existsSync(nameSpecs[0])) {
+      const configData = JSON.parse(fs.readFileSync(nameSpecs[0], {encoding: 'utf8'}))
+      pinConfig(configData, timestamp, (error, pinnedConfigData) => {
+        if (error) {
+          return console.error('Error!', error)
+        }
+        console.log(JSON.stringify(pinnedConfigData, null, 2))
+      })
+    }
+    else {
+      // otherwise, treat each command line argument like a
+      generateResolutionReports(nameSpecs, timestamp, (error, lines) => {
+        if (error) {
+          return console.error(error)
+        }
+        console.log(lines.join('\n'))
+      })
+    }
+  }
+}
+
+if (require.main === module) {
+  main()
+}

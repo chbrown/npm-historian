@@ -15,6 +15,10 @@
   "dependencies": {
     "async": "^2.6.0",
     "npm-registry-client": "^8.5.0",
+    "optimist": "^0.6.1",
     "semver": "^5.5.0"
+  },
+  "bin": {
+    "npm-historian": "bin/npm-historian"
   }
 }
