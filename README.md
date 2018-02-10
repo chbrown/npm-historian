@@ -1,5 +1,7 @@
 # npm-historian
 
+[![npm package version](https://badge.fury.io/js/npm-historian.svg)](https://www.npmjs.com/package/npm-historian)
+
 `npm-historian` is a Node.js package (and CLI) for resolving [`npm`](https://www.npmjs.com/) dependencies to exact versions at a specific point in time.
 
 Given a package name and version (range) string,
